@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Betalgo.OpenAI.GPT3" Version="6.7.2" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.50.0" />
     <PackageReference Include="Microsoft.Graph.Core" Version="3.0.0" />
     <PackageReference Include="Microsoft.Graph.Beta" Version="5.20.0-preview" />

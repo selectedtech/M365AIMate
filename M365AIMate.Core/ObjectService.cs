@@ -7,46 +7,19 @@ using PnP.Core.Services;
 
 namespace M365AIMate.Core;
 
-public partial class ObjectService
+public partial class ObjectService : BaseService
 {
-    private readonly string _clientId;
-    private readonly string _clientSecret;
-    private readonly string _tenantId;
-    private readonly string _scopes;
+
     private readonly IPublicClientApplication _publicClientApp;
     private GraphServiceClient _graphClient;
     private IPnPContextFactory _pnPContextFactory;
 
-    public ObjectService(string clientId, string clientSecret, string tenantId, string scopes, IPnPContextFactory pnPContextFactory)
+    public ObjectService(string clientId, string clientSecret, string tenantId, string scopes, string openAIKey, IPnPContextFactory pnPContextFactory) : base(clientId, clientSecret, tenantId, scopes, openAIKey)
     {
-        _clientId = clientId;
-        _clientSecret = clientSecret;
-        _tenantId = tenantId;
-        _scopes = scopes;
         _pnPContextFactory = pnPContextFactory;
-
     }
 
-    public GraphServiceClient GetGraphClient()
-    {
-        if (_graphClient == null)
-        {
-
-
-            var options = new TokenCredentialOptions
-            {
-                AuthorityHost = AzureAuthorityHosts.AzurePublicCloud
-            };
-
-            var clientSecretCredential = new ClientSecretCredential(
-                    _tenantId, _clientId, _clientSecret, options);
-
-            _graphClient = new GraphServiceClient(clientSecretCredential);
-
-        }
-
-        return _graphClient;
-    }
+ 
 
     public async Task<int> CreateSite()
     {
