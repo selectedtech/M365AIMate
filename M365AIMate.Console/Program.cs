@@ -13,6 +13,11 @@ var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
     .Build();
 
+var secretConfig = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddUserSecrets<Program>()
+                .Build();
+
 // Add and configure PnPCore and PnPCoreAuth services
 // Check out the appsettings.json for the configuration details
 var host = Host.CreateDefaultBuilder()
@@ -31,16 +36,16 @@ await host.StartAsync();
 Console.WriteLine("Hello, World!");
 
 
-var _clientId = configuration["clientID"];
-var _clientSecret = configuration["clientSecret"];
-var _tenantId = configuration["tenantID"];
-var openAIApiKey = configuration["ChatGPTApiKey"];
+var _clientId = secretConfig["clientID"];
+var _clientSecret = secretConfig["clientSecret"];
+var _tenantId = secretConfig["tenantID"];
+var openAIApiKey = secretConfig["ChatGPTApiKey"];
 
 using (var scope = host.Services.CreateScope())
 {
     //var pnpContextFactory = scope.ServiceProvider.GetRequiredService<IPnPContextFactory>();
 
-    //var graphClient = new ObjectService(_clientId, _clientSecret, _tenantId, "", pnpContextFactory);
+    //var graphClient = new SiteService(_clientId, _clientSecret, _tenantId, "", pnpContextFactory);
 
     //var sites = await graphClient.GetSites();
 

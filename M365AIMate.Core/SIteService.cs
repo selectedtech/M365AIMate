@@ -7,14 +7,14 @@ using PnP.Core.Services;
 
 namespace M365AIMate.Core;
 
-public partial class ObjectService : BaseService
+public partial class SiteService : BaseService
 {
 
     private readonly IPublicClientApplication _publicClientApp;
     private GraphServiceClient _graphClient;
     private IPnPContextFactory _pnPContextFactory;
 
-    public ObjectService(string clientId, string clientSecret, string tenantId, string scopes, string openAIKey, IPnPContextFactory pnPContextFactory) : base(clientId, clientSecret, tenantId, scopes, openAIKey)
+    public SiteService(string clientId, string clientSecret, string tenantId, string scopes, string openAIKey, IPnPContextFactory pnPContextFactory) : base(clientId, clientSecret, tenantId, scopes, openAIKey)
     {
         _pnPContextFactory = pnPContextFactory;
     }

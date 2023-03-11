@@ -3,7 +3,11 @@ using Microsoft.Graph.Beta;
 using Microsoft.Identity.Client;
 using Microsoft.Kiota.Abstractions.Authentication;
 using OpenAI.GPT3;
+using OpenAI.GPT3.Interfaces;
 using OpenAI.GPT3.Managers;
+using OpenAI.GPT3.ObjectModels.RequestModels;
+using OpenAI.GPT3.ObjectModels;
+using OpenAI.GPT3.ObjectModels.ResponseModels;
 using PnP.Core.Services;
 using System;
 using System.Collections.Generic;
@@ -21,6 +25,7 @@ namespace M365AIMate.Core
         private readonly string _scopes;
         private GraphServiceClient _graphClient;
         private readonly string _openAIKey;
+        private OpenAIService _openAIService;
 
         public BaseService(string clientId, string clientSecret, string tenantId, string scopes, string openAIKey)
         {
@@ -54,9 +59,29 @@ namespace M365AIMate.Core
 
         public OpenAIService GetOpenAIService()
         {
-            return new OpenAIService(new OpenAiOptions(){
-                ApiKey = _openAIKey
+            if(_openAIService == null)
+            { 
+                _openAIService = new OpenAIService(new OpenAiOptions()
+                {
+                    ApiKey = _openAIKey
+                });
+            }
+
+            return _openAIService;
+        }
+
+        public async Task<string> GenerateText(string prompt)
+        {
+            var openAIService = GetOpenAIService();
+
+            var completionResult = await openAIService.Completions.CreateCompletion(new CompletionCreateRequest()
+            {
+                Prompt = prompt,
+                Model = Models.TextDavinciV3
             });
+
+            return completionResult.Choices.FirstOrDefault().Text.Replace("\n", "");
+
         }
     }
 }
