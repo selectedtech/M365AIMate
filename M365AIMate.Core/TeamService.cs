@@ -31,24 +31,11 @@ namespace M365AIMate.Core
 
             for (int i = 0; i < numberOfTeams; i++)
             {
-
                 var users = await graphClient.Users.GetAsync();
-                var randomUserId = users.Value[new Random().Next(0, users.Value.Count)].Id;                
+                var randomUserId = users.Value[new Random().Next(0, users.Value.Count)].Id;
 
-
-                var completionResult = await openAiService.Completions.CreateCompletion(new CompletionCreateRequest()
-                {
-                    Prompt = "Give me a random Team name",
-                    Model = Models.TextDavinciV3
-                });
-                var teamName = completionResult.Choices.FirstOrDefault().Text.Replace("\n","");
-
-                completionResult = await openAiService.Completions.CreateCompletion(new CompletionCreateRequest()
-                {
-                    Prompt = "Give me a random Team description",
-                    Model = Models.TextDavinciV3
-                });
-                var teamdescription = completionResult.Choices.FirstOrDefault().Text.Replace("\n", "");
+                var teamName = await GenerateText("Give me a random Team name");
+                var teamdescription = await GenerateText(string.Format("Give me a random Team description for the team name of '{0}'", teamName));
 
                 var requestBody = new Team
                 {
@@ -71,7 +58,7 @@ namespace M365AIMate.Core
                                 },
                             },
                         },
-                                        AdditionalData = new Dictionary<string, object>
+                    AdditionalData = new Dictionary<string, object>
                         {
                             {
                                 "template@odata.bind" , "https://graph.microsoft.com/v1.0/teamsTemplates('standard')"
@@ -80,9 +67,6 @@ namespace M365AIMate.Core
                 };
                 var result = await graphClient.Teams.PostAsync(requestBody);
             }
-
-
-
         }
     }
 }
