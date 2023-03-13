@@ -8,6 +8,7 @@ using PnP.Core.Auth.Services.Builder.Configuration;
 using PnP.Core.Services;
 using static System.Formats.Asn1.AsnWriter;
 using OpenAI.GPT3.Extensions;
+using M365AIMate.Core.Services;
 
 var configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json")
@@ -36,16 +37,19 @@ await host.StartAsync();
 Console.WriteLine("Hello, World!");
 
 
-var _clientId = secretConfig["clientID"];
-var _clientSecret = secretConfig["clientSecret"];
-var _tenantId = secretConfig["tenantID"];
+var clientId = secretConfig["clientID"];
+var clientSecret = secretConfig["clientSecret"];
+var tenantId = secretConfig["tenantID"];
 var openAIApiKey = secretConfig["ChatGPTApiKey"];
+var tenantBaseUrl = configuration["PnPCore:Sites:SiteToWorkWith:SiteUrl"];
 
 using (var scope = host.Services.CreateScope())
 {
+
+    #region Test SiteService
     //var pnpContextFactory = scope.ServiceProvider.GetRequiredService<IPnPContextFactory>();
 
-    //var graphClient = new SiteService(_clientId, _clientSecret, _tenantId, "", pnpContextFactory);
+    //var graphClient = new SiteService(clientId, clientSecret, tenantId, "", openAIApiKey, pnpContextFactory, tenantBaseUrl);
 
     //var sites = await graphClient.GetSites();
 
@@ -57,17 +61,33 @@ using (var scope = host.Services.CreateScope())
 
     //Console.WriteLine(sites.Count());
 
-    var TeamsClient = new TeamService(_clientId, _clientSecret, _tenantId, "Group.ReadWrite.All;Directory.ReadWrite.All", openAIApiKey);
+    #endregion
 
-    var teams = await TeamsClient.GetTeams();
-    Console.WriteLine(teams.Count());
+    #region Test TeamsService
 
-    await TeamsClient.CreateTeams(1);
+    var gen = new Generator(clientId, clientSecret, tenantId, openAIApiKey, null, tenantBaseUrl);
 
-    teams = await TeamsClient.GetTeams();
+    var newTeams = await gen.CreateTeams(3);
 
-    Console.WriteLine(teams.Count());
+    Console.WriteLine(newTeams.Count());
 
+    //var teams= await gen.GetTeams();
+    //Console.WriteLine(teams.Count());
+
+
+
+    //var TeamsClient = new TeamService(clientId, clientSecret, tenantId, "Group.ReadWrite.All;Directory.ReadWrite.All", openAIApiKey);
+
+    //var teams = await TeamsClient.GetTeams();
+    //Console.WriteLine(teams.Count());
+
+    //await TeamsClient.CreateTeams(1);
+
+    //teams = await TeamsClient.GetTeams();
+
+    //Console.WriteLine(teams.Count());
+
+    #endregion
 
 
 }
