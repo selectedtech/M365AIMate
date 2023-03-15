@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>Microsoft.TeamsFx</AssemblyName>
+    <RootNamespace>Microsoft.TeamsFx</RootNamespace>
+    <Version>1.2.1</Version>
+    <Authors>Microsoft</Authors>
+    <Company>Microsoft</Company>
+    <RepositoryUrl>https://github.com/OfficeDev/TeamsFx</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/OfficeDev/TeamsFx/tree/main/packages/dotnet-sdk</PackageProjectUrl>
+    <Copyright>© Microsoft Corporation. All rights reserved.</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <Description>This package aims to reduce the developer tasks of implementing identity and access to cloud resources down to single-line statements with "zero configuration".</Description>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+	<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <SupportedPlatform Include="browser" />
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+      <_Parameter1>Microsoft.TeamsFx.Test</_Parameter1>
+    </AssemblyAttribute>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Bot.Builder" Version="4.18.1" />
+    <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.18.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Graph" Version="5.2.0" />
+    <PackageReference Include="Microsoft.Identity.Client" Version="4.40.0" />
+  </ItemGroup>
+
+</Project>

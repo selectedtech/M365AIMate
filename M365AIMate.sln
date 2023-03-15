@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M365AIMate.Test", "M365AIMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "M365AIMate.TeamsTab", "M365AIMate.TeamsTab\M365AIMate.TeamsTab.csproj", "{28C85D08-F40E-4BB3-B5CE-BAE8F4CF7B07}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Microsoft.TeamsFx", "TeamsFx\Microsoft.TeamsFx.csproj", "{312E1CD7-A8B8-4D45-9FDB-D5BADAD132CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{28C85D08-F40E-4BB3-B5CE-BAE8F4CF7B07}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28C85D08-F40E-4BB3-B5CE-BAE8F4CF7B07}.Release|Any CPU.Build.0 = Release|Any CPU
 		{28C85D08-F40E-4BB3-B5CE-BAE8F4CF7B07}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{312E1CD7-A8B8-4D45-9FDB-D5BADAD132CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{312E1CD7-A8B8-4D45-9FDB-D5BADAD132CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{312E1CD7-A8B8-4D45-9FDB-D5BADAD132CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{312E1CD7-A8B8-4D45-9FDB-D5BADAD132CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

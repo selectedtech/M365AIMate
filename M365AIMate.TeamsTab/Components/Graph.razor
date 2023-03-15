@@ -1,7 +1,8 @@
 ﻿@using System.IO
 @using Azure.Core
 @using Microsoft.Graph
-@using Microsoft.Graph.Models;
+@using Microsoft.Graph.Models
+@using Microsoft.Graph.Core
 @inject TeamsFx teamsfx
 @inject TeamsUserCredential teamsUserCredential
 
@@ -98,7 +99,7 @@
 
     private GraphServiceClient GetGraphServiceClient()
     {
-        var msGraphAuthProvider = new MsGraphAuthProvider(teamsUserCredential, _scope);
+        //var msGraphAuthProvider = new MsGraphAuthProvider(teamsUserCredential, _scope);
         var client = new GraphServiceClient(teamsUserCredential);
         return client;
     }
