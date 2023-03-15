@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>c5d3e723-89bb-493a-9f09-c3e402db02f3</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,13 +18,16 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Graph" Version="5.1.0" />
+    <PackageReference Include="Microsoft.Graph" Version="5.2.0" />
     <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="2.1.2" />
-    <PackageReference Include="Microsoft.TeamsFx" Version="1.2.1" />
+    <PackageReference Include="Microsoft.Graph.Core" Version="3.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\M365AIMate.Core\M365AIMate.Core.csproj" />
+    <ProjectReference Include="..\TeamsFx\Microsoft.TeamsFx.csproj" />
   </ItemGroup>
+
+
 
 </Project>

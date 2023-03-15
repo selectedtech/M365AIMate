@@ -14,7 +14,7 @@ builder.Services.AddControllers();
 builder.Services.AddHttpClient("WebClient", client => client.Timeout = TimeSpan.FromSeconds(600));
 builder.Services.AddHttpContextAccessor();
 
-var app = builder.Build();
+ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {

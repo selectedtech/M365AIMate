@@ -1,10 +1,27 @@
 ﻿@page "/"
 @page "/tab"
 @using M365AIMate.TeamsTab.Components;
+@using Microsoft.AspNetCore.Components.Web;
 
 <div>
-    <Welcome />
+    @*<Welcome />*@
 </div>
 
+<div style="background-image: url('background.jpg'); background-size: cover;">
+    <div style="width: 50%; margin: auto; text-align: center; padding-top: 20%;">
+        <form>
+            <input type="number" placeholder="Enter the number of Teams to be created" name="number" required />
+            <br />
+            <button type="submit" @onclick="OnSubmit" class="btn btn-primary">Create Demo Teams</button>
+        </form>
+    </div>
+</div>
+
+@code {
+    private async Task OnSubmit(MouseEventArgs e)
+    {
+        // Handle form submission here
+    }
+}
 
 
